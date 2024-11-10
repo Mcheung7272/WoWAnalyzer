@@ -54,6 +54,7 @@ import T29MMTier4P from './modules/items/T29MMTier4P';
 import FoundationGuide from 'interface/guide/foundation/FoundationGuide';
 import OvinaxMercurialEgg from 'parser/retail/modules/items/thewarwithin/trinkets/OvinaxMercurialEgg';
 import MadQueensMandate from 'parser/retail/modules/items/thewarwithin/trinkets/MadQueensMandate';
+import SkardynsGrace from 'parser/retail/modules/items/thewarwithin/trinkets/SkardynsGrace';
 
 class CombatLogParser extends CoreCombatLogParser {
   static guide = FoundationGuide;
@@ -126,6 +127,7 @@ class CombatLogParser extends CoreCombatLogParser {
     t294p: T29MMTier4P,
     ovinaxMercurialEgg: OvinaxMercurialEgg,
     madQueensMandate: MadQueensMandate,
+    skardynsGrace: SkardynsGrace,
 
     // There's no throughput benefit from casting Arcane Torrent on cooldown
     arcaneTorrent: [ArcaneTorrent, { castEfficiency: null }] as const,
