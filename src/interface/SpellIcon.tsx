@@ -29,7 +29,7 @@ const SpellIcon = ({ spell, noLink, alt, ilvl, ...others }: Props) => {
     />
   );
 
-  const spellId = typeof spell === 'number' ? spell : spell.id;
+  const spellId = typeof spell === 'number' ? spell : spell?.id;
 
   if (noLink || spellId <= 1) {
     return icon;
