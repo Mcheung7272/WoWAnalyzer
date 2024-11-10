@@ -55,6 +55,7 @@ import FoundationGuide from 'interface/guide/foundation/FoundationGuide';
 import OvinaxMercurialEgg from 'parser/retail/modules/items/thewarwithin/trinkets/OvinaxMercurialEgg';
 import MadQueensMandate from 'parser/retail/modules/items/thewarwithin/trinkets/MadQueensMandate';
 import SkardynsGrace from 'parser/retail/modules/items/thewarwithin/trinkets/SkardynsGrace';
+import BlackArrow from '../shared/talents/BlackArrow';
 
 class CombatLogParser extends CoreCombatLogParser {
   static guide = FoundationGuide;
@@ -121,6 +122,7 @@ class CombatLogParser extends CoreCombatLogParser {
     masterMarksman: MasterMarksman,
     wailingArrow: WailingArrow,
     barrage: Barrage,
+    blackArrow: BlackArrow,
 
     // items
     t292p: T29MMTier2P,
