@@ -87,6 +87,11 @@ class Abilities extends CoreAbilities {
         enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
         category: SPELL_CATEGORY.ROTATIONAL,
       },
+      {
+        spell: SPELLS.WAILING_ARROW_DAMAGE_FOCUS.id,
+        enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
+        category: SPELL_CATEGORY.ROTATIONAL,
+      },
       //endregion
 
       //region Talents
