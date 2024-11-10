@@ -509,7 +509,7 @@ const spells = {
     icon: 'spell_nature_drowsy',
   },
   WAILING_ARROW_DAMAGE: {
-    id: 392058,
+    id: 392060,
     name: 'Wailing Arrow',
     icon: 'ability_theblackarrow',
   },
