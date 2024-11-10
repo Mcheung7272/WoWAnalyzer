@@ -1,9 +1,13 @@
 import { change, date } from 'common/changelog';
-import { Arlie, emallson, Putro, Swolorno, ToppleTheNun, Trevor } from 'CONTRIBUTORS';
+import { Arlie, emallson, Putro, Swolorno, ToppleTheNun, Trevor, Yellot } from 'CONTRIBUTORS';
 import { ItemLink, SpellLink } from 'interface';
 import TALENTS from 'common/TALENTS/hunter';
 import ITEMS from 'common/ITEMS';
 export default [
+  change(date(2024, 11, 10), 'Enable Marksmanship again for usage', Yellot),
+  change(date(2024, 11, 10), 'Added Black Arrow, Wailing Arrow and Fort of Bear', Yellot),
+  change(date(2024, 11, 10), 'Updated some constants values to match TWW 11.05', Yellot),
+  change(date(2024, 11, 10), 'Removed DeathChakrams, Murder of crows, Steel trap', Yellot),
   change(date(2023, 10, 24), <>Add <SpellLink spell={TALENTS.DEATHBLOW_TALENT} /> buff to the timeline.</>, Putro),
   change(date(2023, 10, 3), <>Add <SpellLink spell={TALENTS.STEEL_TRAP_TALENT} /> as a trackable talent.</>, Putro),
   change(date(2023, 7, 3), 'Update SpellLink usage.', ToppleTheNun),
