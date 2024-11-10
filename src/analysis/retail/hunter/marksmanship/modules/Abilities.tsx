@@ -121,10 +121,9 @@ class Abilities extends CoreAbilities {
         },
       },
       {
-        spell: TALENTS.SERPENT_STING_TALENT.id,
-        buffSpellId: TALENTS.SERPENT_STING_TALENT.id,
+        spell: SPELLS.SERPENT_STING_MM.id,
         category: SPELL_CATEGORY.ROTATIONAL,
-        enabled: combatant.hasTalent(TALENTS.SERPENT_STING_TALENT),
+        enabled: combatant.hasTalent(TALENTS.SERPENTSTALKERS_TRICKERY_TALENT),
         gcd: {
           base: 1500,
         },
@@ -164,19 +163,6 @@ class Abilities extends CoreAbilities {
           base: 1500,
         },
       },
-      {
-        spell: TALENTS.STEEL_TRAP_TALENT.id,
-        category: SPELL_CATEGORY.ROTATIONAL,
-        cooldown: 30,
-        enabled: combatant.hasTalent(TALENTS.STEEL_TRAP_TALENT),
-        gcd: {
-          base: 1500,
-        },
-        castEfficiency: {
-          suggestion: true,
-          recommendedEfficiency: 0.85,
-        },
-      },
       //endregion
 
       //region Baseline Defensives
@@ -207,6 +193,15 @@ class Abilities extends CoreAbilities {
         category: SPELL_CATEGORY.DEFENSIVE,
         isDefensive: true,
         cooldown: 180,
+        gcd: {
+          static: 0,
+        },
+      },
+      {
+        spell: SPELLS.FORTITUDE_OF_THE_BEAR.id,
+        category: SPELL_CATEGORY.DEFENSIVE,
+        isDefensive: true,
+        cooldown: 120,
         gcd: {
           static: 0,
         },
