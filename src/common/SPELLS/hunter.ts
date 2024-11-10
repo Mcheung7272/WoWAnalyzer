@@ -513,6 +513,21 @@ const spells = {
     name: 'Wailing Arrow',
     icon: 'ability_theblackarrow',
   },
+  BLACK_ARROW_DAMAGE: {
+    id: 466930,
+    name: 'Black Arrow',
+    icon: 'inv_ability_darkrangerhunter_blackarrow',
+  },
+  BLACK_ARROW_DAMAGE_2: {
+    id: 468037,
+    name: 'Black Arrow',
+    icon: 'inv_ability_darkrangerhunter_blackarrow',
+  },
+  BLACK_ARROW_DAMAGE_3: {
+    id: 468572,
+    name: 'Black Arrow',
+    icon: 'inv_ability_darkrangerhunter_blackarrow',
+  },
   //endregion
 
   //region Pets
