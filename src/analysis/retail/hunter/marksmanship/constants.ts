@@ -63,7 +63,7 @@ export const STREAMLINE_RAPID_FIRE_DAMAGE_INCREASE = 0.15;
 export const STREAMLINE_AIMED_SHOT_CAST_SPEED_UP = 0.3;
 /** Steady Focus */
 //Steady Focus increases haste by 8%
-export const STEADY_FOCUS_HASTE_PERCENT = [0, 0.04, 0.08];
+export const STEADY_FOCUS_HASTE_PERCENT = [0, 0.08];
 /** Calling the Shots */
 //2.5 seconds per 50 focus spent
 export const CTS_CDR_PER_FOCUS = 2500 / 50;
