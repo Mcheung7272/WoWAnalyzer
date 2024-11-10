@@ -39,7 +39,7 @@ const spells = {
   ABYSSAL_GLUTTONY: {
     id: 443124,
     name: 'Abyssal Gluttony',
-    icon: 'Ability_creature_poison_01_purple',
+    icon: 'ability_creature_poison_01_purple',
   },
 } satisfies Record<string, Spell>;
 
