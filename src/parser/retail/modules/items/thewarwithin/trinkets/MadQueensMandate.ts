@@ -31,7 +31,7 @@ export default class MadQueensMandate extends Analyzer.withDependencies({
 
   private onDamage(event: DamageEvent) {
     if (event.overkill && event.overkill > 0) {
-      this.spellUsable.reduceCooldown(SPELLS.ABYSSAL_GLUTTONY.id, 60);
+      this.spellUsable.reduceCooldown(SPELLS.ABYSSAL_GLUTTONY.id, 60000);
     }
   }
 }
