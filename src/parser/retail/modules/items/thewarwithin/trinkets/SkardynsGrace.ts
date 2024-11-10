@@ -11,7 +11,6 @@ export default class SkardynsGrace extends Analyzer.withDependencies({
     super(options);
 
     this.active = this.selectedCombatant.hasTrinket(ITEMS.SKARDYNS_GRACE.id);
-    console.log(this.active);
     if (!this.active) {
       return;
     }
