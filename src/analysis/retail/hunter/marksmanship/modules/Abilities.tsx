@@ -82,6 +82,11 @@ class Abilities extends CoreAbilities {
           recommendedEfficiency: 0.95,
         },
       },
+      {
+        spell: SPELLS.WAILING_ARROW_DAMAGE.id,
+        enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
+        category: SPELL_CATEGORY.ROTATIONAL,
+      },
       //endregion
 
       //region Talents
@@ -89,14 +94,6 @@ class Abilities extends CoreAbilities {
         spell: TALENTS.WAILING_ARROW_TALENT.id,
         enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
         category: SPELL_CATEGORY.ROTATIONAL,
-        gcd: {
-          base: 1500,
-        },
-        cooldown: 60,
-        castEfficiency: {
-          suggestion: true,
-          recommendedEfficiency: 0.9,
-        },
       },
       {
         spell: TALENTS.CHIMAERA_SHOT_TALENT.id,
