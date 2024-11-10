@@ -1712,7 +1712,7 @@ const talents = {
     definitionIds: [{ id: 131203, specId: 254 }],
   },
   WAILING_ARROW_TALENT: {
-    id: 392060,
+    id: 459806,
     name: 'Wailing Arrow',
     icon: 'ability_theblackarrow',
     maxRanks: 1,
