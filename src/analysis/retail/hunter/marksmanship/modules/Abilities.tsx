@@ -163,6 +163,14 @@ class Abilities extends CoreAbilities {
           base: 1500,
         },
       },
+      {
+        spell: SPELLS.BLACK_ARROW_DAMAGE.id,
+        category: SPELL_CATEGORY.ROTATIONAL,
+        enabled: combatant.hasTalent(TALENTS.BLACK_ARROW_TALENT),
+        gcd: {
+          base: 1500,
+        },
+      },
       //endregion
 
       //region Baseline Defensives
