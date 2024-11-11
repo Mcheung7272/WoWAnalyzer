@@ -4,6 +4,7 @@ import {
 } from 'analysis/retail/hunter/marksmanship/constants';
 import { MS_BUFFER_100 } from 'analysis/retail/hunter/shared/constants';
 import SPELLS from 'common/SPELLS';
+import { TALENTS_HUNTER } from 'common/TALENTS';
 import Analyzer, { Options, SELECTED_PLAYER } from 'parser/core/Analyzer';
 import Events, {
   AnyEvent,
@@ -69,6 +70,17 @@ class RapidFire extends Analyzer {
       Events.resourcechange.by(SELECTED_PLAYER).spell(SPELLS.RAPID_FIRE_FOCUS),
       this.onEnergize,
     );
+    this.addEventListener(
+      Events.cast.by(SELECTED_PLAYER).spell(SPELLS.WAILING_ARROW_DAMAGE_FOCUS),
+      this.onWailingArrow,
+    );
+  }
+
+  //Wailing arrow + Readiness resets the cooldown of Rapidfire
+  private onWailingArrow() {
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.READINESS_TALENT)) {
+      this.spellUsable.endCooldown(SPELLS.RAPID_FIRE.id);
+    }
   }
 
   onEvent(event: AnyEvent) {
