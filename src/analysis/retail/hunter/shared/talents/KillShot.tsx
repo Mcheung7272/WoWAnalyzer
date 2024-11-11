@@ -13,6 +13,7 @@ import STATISTIC_CATEGORY from 'parser/ui/STATISTIC_CATEGORY';
 import STATISTIC_ORDER from 'parser/ui/STATISTIC_ORDER';
 
 import { KILL_SHOT_EXECUTE_RANGE } from '../constants';
+import Events, { UpdateSpellUsableEvent } from 'parser/core/Events';
 
 class KillShot extends ExecuteHelper {
   static executeSources = SELECTED_PLAYER;
@@ -26,6 +27,7 @@ class KillShot extends ExecuteHelper {
   };
 
   maxCasts: number = 0;
+  casted: number = 0;
 
   activeKillShotSpell =
     this.selectedCombatant.spec === SPECS.SURVIVAL_HUNTER
@@ -38,6 +40,16 @@ class KillShot extends ExecuteHelper {
     this.active = !this.selectedCombatant.hasTalent(TALENTS.BLACK_ARROW_TALENT);
     this.selectedCombatant.hasTalent(TALENTS.KILL_SHOT_SHARED_TALENT) ||
       this.selectedCombatant.hasTalent(TALENTS.KILL_SHOT_SURVIVAL_TALENT);
+
+    this.addEventListener(
+      Events.UpdateSpellUsable.spell(this.activeKillShotSpell),
+      this.onSpellUsable,
+    );
+
+    this.addEventListener(
+      Events.cast.by(SELECTED_PLAYER).spell(this.activeKillShotSpell),
+      this.onCast,
+    );
 
     const ctor = this.constructor as typeof ExecuteHelper;
     ctor.executeSpells.push(this.activeKillShotSpell);
@@ -54,10 +66,22 @@ class KillShot extends ExecuteHelper {
         suggestion: true,
         recommendedEfficiency: 0.85,
         maxCasts: () => this.maxCasts,
+        casts: () => this.casted,
       },
     });
   }
 
+  private onCast() {
+    this.casted += 1;
+  }
+
+  private onSpellUsable(event: UpdateSpellUsableEvent) {
+    if (event.isAvailable) {
+      this.maxCasts += 1;
+    }
+  }
+
+  //Really not sure what this is doing. Also dont think this is ever triggered.
   adjustMaxCasts() {
     this.maxCasts += Math.ceil(this.totalExecuteDuration / 10000);
     this.maxCasts += this.singleExecuteEnablerApplications;
@@ -72,6 +96,10 @@ class KillShot extends ExecuteHelper {
       >
         <BoringSpellValueText spell={this.activeKillShotSpell}>
           <ItemDamageDone amount={this.damage} />
+          <br />
+          {this.maxCasts} <small>procs</small>
+          <br />
+          {this.maxCasts - this.casted} <small>wasted procs</small>
         </BoringSpellValueText>
       </Statistic>
     );
