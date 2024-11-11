@@ -3,13 +3,24 @@ import {
   TRUESHOT_FOCUS_INCREASE,
 } from 'analysis/retail/hunter/marksmanship/constants';
 import SPELLS from 'common/SPELLS';
+import { TALENTS_HUNTER } from 'common/TALENTS';
 import Analyzer, { Options, SELECTED_PLAYER } from 'parser/core/Analyzer';
 import Events, { ResourceChangeEvent } from 'parser/core/Events';
 import BoringSpellValueText from 'parser/ui/BoringSpellValueText';
 import Statistic from 'parser/ui/Statistic';
 import STATISTIC_ORDER from 'parser/ui/STATISTIC_ORDER';
+import Abilities from 'parser/core/modules/Abilities';
+import SpellUsable from 'parser/shared/modules/SpellUsable';
 
 class SteadyShot extends Analyzer {
+  static dependencies = {
+    spellUsable: SpellUsable,
+    abilities: Abilities,
+  };
+
+  protected spellUsable!: SpellUsable;
+  protected abilities!: Abilities;
+
   effectiveFocusGain = 0;
   focusWasted = 0;
   additionalFocusFromTrueshot = 0;
@@ -21,6 +32,18 @@ class SteadyShot extends Analyzer {
       Events.resourcechange.by(SELECTED_PLAYER).spell(SPELLS.STEADY_SHOT_FOCUS),
       this.onEnergize,
     );
+
+    this.addEventListener(
+      Events.cast.by(SELECTED_PLAYER).spell(SPELLS.STEADY_SHOT),
+      this.onSteadyShotCast,
+    );
+  }
+
+  //Pin Cushion lowers Aimed Shot CD by 2 seconds
+  private onSteadyShotCast() {
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.PIN_CUSHION_TALENT)) {
+      this.spellUsable.reduceCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, 2000);
+    }
   }
 
   onEnergize(event: ResourceChangeEvent) {
