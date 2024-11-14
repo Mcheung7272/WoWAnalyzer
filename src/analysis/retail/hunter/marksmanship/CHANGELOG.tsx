@@ -3,9 +3,11 @@ import { Arlie, emallson, Putro, Swolorno, ToppleTheNun, Trevor, Yellot } from '
 import { ItemLink, SpellLink } from 'interface';
 import TALENTS from 'common/TALENTS/hunter';
 import ITEMS from 'common/ITEMS';
+import SPELLS from 'common/SPELLS';
 export default [
+  change(date(2024, 11, 13), 'Updated tier set', Yellot),
   change(date(2024, 11, 10), 'Enable Marksmanship again for usage', Yellot),
-  change(date(2024, 11, 10), 'Added Black Arrow, Wailing Arrow and Fort of Bear', Yellot),
+  change(date(2024, 11, 10), <>Added <SpellLink spell={TALENTS.BLACK_ARROW_TALENT} />, <SpellLink spell={TALENTS.WAILING_ARROW_TALENT} /> and <SpellLink spell={SPELLS.FORTITUDE_OF_THE_BEAR} /></>, Yellot),
   change(date(2024, 11, 10), 'Updated some constants values to match TWW 11.05', Yellot),
   change(date(2024, 11, 10), 'Removed DeathChakrams, Murder of crows, Steel trap', Yellot),
   change(date(2023, 10, 24), <>Add <SpellLink spell={TALENTS.DEATHBLOW_TALENT} /> buff to the timeline.</>, Putro),
