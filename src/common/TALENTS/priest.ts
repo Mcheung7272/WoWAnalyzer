@@ -214,7 +214,7 @@ const talents = {
   CLAIRVOYANCE_TALENT: {
     id: 428940,
     name: 'Clairvoyance',
-    icon: 'inv_ability_oraclepriest_clairvoyance',
+    icon: 'inv_inscription_vantusrune_progenitor',
     maxRanks: 1,
     entryIds: [117290],
     definitionIds: [{ id: 122302, specId: 257 }],

@@ -364,14 +364,6 @@ const talents = {
     entryIds: [125140],
     definitionIds: [{ id: 129972, specId: 260 }],
   },
-  DEATH_PERCEPTION_TALENT: {
-    id: 469642,
-    name: 'Death Perception',
-    icon: 'spell_nzinsanity_shortsighted',
-    maxRanks: 2,
-    entryIds: [112594],
-    definitionIds: [{ id: 117599, specId: 261 }],
-  },
   DEEPENING_SHADOWS_TALENT: {
     id: 185314,
     name: 'Deepening Shadows',
@@ -493,12 +485,13 @@ const talents = {
     definitionIds: [{ id: 122143, specId: 259 }],
   },
   ECHOING_REPRIMAND_TALENT: {
-    id: 470669,
+    id: 385616,
     name: 'Echoing Reprimand',
-    icon: 'inv_ability_rogue_echoingreprimand',
+    icon: 'ability_bastion_rogue',
     maxRanks: 1,
-    entryIds: [112524],
-    definitionIds: [{ id: 117529, specId: 261 }],
+    entryIds: [112525],
+    definitionIds: [{ id: 117530, specId: 261 }],
+    energyCost: 10,
   },
   EDGE_CASE_TALENT: {
     id: 453457,
@@ -631,7 +624,7 @@ const talents = {
   FLAGELLATION_TALENT: {
     id: 384631,
     name: 'Flagellation',
-    icon: 'inv_ability_rogue_flagellation',
+    icon: 'ability_revendreth_rogue',
     maxRanks: 1,
     entryIds: [112606],
     definitionIds: [{ id: 117611, specId: 261 }],
@@ -683,14 +676,6 @@ const talents = {
     maxRanks: 1,
     entryIds: [126028],
     definitionIds: [{ id: 130860, specId: 261 }],
-  },
-  FORCED_INDUCTION_TALENT: {
-    id: 470668,
-    name: 'Forced Induction',
-    icon: 'inv_misc_enggizmos_06',
-    maxRanks: 1,
-    entryIds: [112523],
-    definitionIds: [{ id: 117528, specId: 261 }],
   },
   GHOSTLY_STRIKE_TALENT: {
     id: 196937,
@@ -896,15 +881,15 @@ const talents = {
     entryIds: [112667],
     definitionIds: [{ id: 117672, specId: 259 }],
   },
-  INEVITABILE_END_TALENT: {
+  INEVITABILITY_ASSASSINATION_TALENT: {
     id: 454434,
-    name: 'Inevitabile End',
+    name: 'Inevitability',
     icon: 'spell_ice_lament',
     maxRanks: 1,
     entryIds: [117711],
     definitionIds: [{ id: 122723, specId: 260 }],
   },
-  INEVITABILITY_TALENT: {
+  INEVITABILITY_SUBTLETY_TALENT: {
     id: 382512,
     name: 'Inevitability',
     icon: 'spell_shadow_rune',
@@ -935,6 +920,14 @@ const talents = {
     maxRanks: 1,
     entryIds: [117136],
     definitionIds: [{ id: 122148, specId: 259 }],
+  },
+  INVIGORATING_SHADOWDUST_TALENT: {
+    id: 382523,
+    name: 'Invigorating Shadowdust',
+    icon: 'ability_vanish',
+    maxRanks: 2,
+    entryIds: [112594],
+    definitionIds: [{ id: 117599, specId: 261 }],
   },
   IRON_STOMACH_TALENT: {
     id: 193546,
@@ -1235,6 +1228,14 @@ const talents = {
     entryIds: [112605],
     definitionIds: [{ id: 117610, specId: 261 }],
   },
+  RESOUNDING_CLARITY_TALENT: {
+    id: 381622,
+    name: 'Resounding Clarity',
+    icon: 'ability_bastion_rogue',
+    maxRanks: 1,
+    entryIds: [112524],
+    definitionIds: [{ id: 117529, specId: 261 }],
+  },
   RETRACTABLE_HOOK_TALENT: {
     id: 256188,
     name: 'Retractable Hook',
@@ -1242,6 +1243,14 @@ const talents = {
     maxRanks: 1,
     entryIds: [112569],
     definitionIds: [{ id: 117574, specId: 260 }],
+  },
+  REVERBERATION_TALENT: {
+    id: 394332,
+    name: 'Reverberation',
+    icon: 'spell_animabastion_buff',
+    maxRanks: 1,
+    entryIds: [112523],
+    definitionIds: [{ id: 117528, specId: 261 }],
   },
   RIPOSTE_TALENT: {
     id: 344363,
@@ -1317,6 +1326,15 @@ const talents = {
     energyCost: 30,
     comboPointsCost: 1,
   },
+  SEPSIS_TALENT: {
+    id: 385408,
+    name: 'Sepsis',
+    icon: 'ability_ardenweald_rogue',
+    maxRanks: 1,
+    entryIds: [117171],
+    definitionIds: [{ id: 122183, specId: 261 }],
+    energyCost: 25,
+  },
   SERRATED_BONE_SPIKES_TALENT: {
     id: 455352,
     name: 'Serrated Bone Spikes',
@@ -1364,6 +1382,14 @@ const talents = {
     maxRanks: 1,
     entryIds: [112575],
     definitionIds: [{ id: 117580, specId: 261 }],
+  },
+  SHADOWSTEP_TALENT: {
+    id: 394931,
+    name: 'Shadowstep',
+    icon: 'rogue_shadowfocus',
+    maxRanks: 1,
+    entryIds: [112583],
+    definitionIds: [{ id: 117588, specId: 261 }],
   },
   SHADOW_BLADES_TALENT: {
     id: 121471,
@@ -1519,14 +1545,6 @@ const talents = {
     entryIds: [112539],
     definitionIds: [{ id: 117544, specId: 260 }],
   },
-  SUPERCHARGER_TALENT: {
-    id: 470347,
-    name: 'Supercharger',
-    icon: 'inv_engineering_90_electrifiedether',
-    maxRanks: 2,
-    entryIds: [112525],
-    definitionIds: [{ id: 117530, specId: 261 }],
-  },
   SUPERIOR_MIXTURE_TALENT: {
     id: 423701,
     name: 'Superior Mixture',
@@ -1624,7 +1642,7 @@ const talents = {
     definitionIds: [{ id: 117650, specId: 260 }],
   },
   THISTLE_TEA_TALENT: {
-    id: 469779,
+    id: 381623,
     name: 'Thistle Tea',
     icon: 'inv_drink_milk_05',
     maxRanks: 1,
@@ -1638,14 +1656,6 @@ const talents = {
     maxRanks: 1,
     entryIds: [117734],
     definitionIds: [{ id: 122746, specId: 261 }],
-  },
-  THRILL_SEEKING_TALENT: {
-    id: 394931,
-    name: 'Thrill Seeking',
-    icon: 'inv_ragnaros_heart_shadowflame',
-    maxRanks: 1,
-    entryIds: [112583],
-    definitionIds: [{ id: 117588, specId: 261 }],
   },
   THROWN_PRECISION_TALENT: {
     id: 381629,
