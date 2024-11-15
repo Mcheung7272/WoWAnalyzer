@@ -1,4 +1,8 @@
-import { TRUESHOT_AIMED_SHOT_RECHARGE_INCREASE } from 'analysis/retail/hunter/marksmanship/constants';
+import {
+  STEADY_FOCUS_HASTE_PERCENT,
+  TACTICAL_RELOAD_CDR_REDUCTION,
+  TRUESHOT_AIMED_SHOT_RECHARGE_INCREASE,
+} from 'analysis/retail/hunter/marksmanship/constants';
 import SPELLS from 'common/SPELLS';
 import { TALENTS_HUNTER } from 'common/TALENTS';
 import Analyzer, { Options, SELECTED_PLAYER } from 'parser/core/Analyzer';
@@ -62,6 +66,13 @@ class AimedShot extends Analyzer {
     );
   }
 
+  //Pin Cushion reduces the cooldown of Aimed Shot by 2 seconds
+  onSteadyShot(event: CastEvent) {
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.PIN_CUSHION_TALENT)) {
+      this.spellUsable.reduceCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, 2000, event.timestamp);
+    }
+  }
+
   onEvent(event: AnyEvent) {
     if (!this.selectedCombatant.hasBuff(SPELLS.TRUESHOT.id)) {
       return;
@@ -77,9 +88,23 @@ class AimedShot extends Analyzer {
      * Dead Eye and Trueshot scale multiplicatively off each other, which can lead to extremely fast cooldown reduction that this should properly handle.
      */
     let modRate = 1;
+
+    // Sum the total cdr reduction from Trueshot, Tactial Reload, Steady Focus
+    let reduction = 0;
     if (this.selectedCombatant.hasBuff(SPELLS.TRUESHOT.id)) {
-      modRate /= 1 + TRUESHOT_AIMED_SHOT_RECHARGE_INCREASE;
+      reduction += TRUESHOT_AIMED_SHOT_RECHARGE_INCREASE;
     }
+
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.TACTICAL_RELOAD_TALENT)) {
+      reduction += TACTICAL_RELOAD_CDR_REDUCTION;
+    }
+
+    if (this.selectedCombatant.hasBuff(SPELLS.STEADY_FOCUS_BUFF.id)) {
+      reduction += STEADY_FOCUS_HASTE_PERCENT[1];
+    }
+
+    modRate /= 1 + reduction;
+
     const spellReductionSpeed = 1 / modRate - 1;
     debug &&
       console.log('modRate: ', modRate, ' & additional spellReductionSpeed: ', spellReductionSpeed);
