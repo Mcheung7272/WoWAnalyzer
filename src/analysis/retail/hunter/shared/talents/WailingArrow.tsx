@@ -1,5 +1,5 @@
 import SPELLS from 'common/SPELLS';
-import TALENTS from 'common/TALENTS/hunter';
+import TALENTS, { TALENTS_HUNTER } from 'common/TALENTS/hunter';
 import Analyzer, { Options, SELECTED_PLAYER } from 'parser/core/Analyzer';
 import Events, { CastEvent, DamageEvent } from 'parser/core/Events';
 import SpellUsable from 'parser/shared/modules/SpellUsable';
@@ -16,6 +16,7 @@ class WailingArrow extends Analyzer {
   protected spellUsable!: SpellUsable;
 
   damage = 0;
+  chargesLeft = 0; // Readiness grants 2 charges of Aimed Shot. Depending on current available charges, this value changes
 
   constructor(options: Options) {
     super(options);
@@ -35,17 +36,31 @@ class WailingArrow extends Analyzer {
       Events.cast.by(SELECTED_PLAYER).spell(SPELLS.WAILING_ARROW_DAMAGE_FOCUS),
       this.onWailingCast,
     );
+    this.addEventListener(
+      Events.cast.by(SELECTED_PLAYER).spell(TALENTS_HUNTER.AIMED_SHOT_TALENT),
+      this.onAimedShot,
+    );
   }
 
-  //Readiness grants Wailing Arrow the ability to reset the cooldown of Rapid Fire
+  //Readiness grants Wailing Arrow the ability to reset the cooldown of Rapid Fire and 2 charges of Aimed Shot
   onWailingCast(event: CastEvent) {
     if (this.selectedCombatant.hasTalent(TALENTS.READINESS_TALENT)) {
       this.spellUsable.endCooldown(SPELLS.RAPID_FIRE.id, event.timestamp);
+      this.chargesLeft = 2 - this.spellUsable.chargesAvailable(TALENTS_HUNTER.AIMED_SHOT_TALENT.id);
+      this.spellUsable.endCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, event.timestamp);
     }
   }
 
   onWailingDamage(event: DamageEvent) {
     this.damage += event.amount + (event.absorbed || 0);
+  }
+
+  //Residual Charge from Readiness should be accounted for
+  onAimedShot(event: CastEvent) {
+    if (this.chargesLeft > 0) {
+      this.spellUsable.endCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, event.timestamp);
+      this.chargesLeft -= 1;
+    }
   }
 
   statistic() {
