@@ -4,6 +4,7 @@ import TALENTS from 'common/TALENTS/hunter';
 import CoreAbilities from 'parser/core/modules/Abilities';
 import { SpellbookAbility } from 'parser/core/modules/Ability';
 import SPELL_CATEGORY from 'parser/core/SPELL_CATEGORY';
+import { TACTICAL_RELOAD_CDR_REDUCTION } from '../constants';
 
 class Abilities extends CoreAbilities {
   spellbook(): SpellbookAbility[] {
@@ -21,7 +22,12 @@ class Abilities extends CoreAbilities {
         spell: TALENTS.AIMED_SHOT_TALENT.id,
         enabled: this.selectedCombatant.hasTalent(TALENTS.AIMED_SHOT_TALENT),
         category: SPELL_CATEGORY.ROTATIONAL,
-        cooldown: (haste: number) => 12 / (1 + haste),
+        cooldown: (haste: number) => {
+          if (this.selectedCombatant.hasTalent(TALENTS.TACTICAL_RELOAD_TALENT)) {
+            return 12 / (1 + haste + TACTICAL_RELOAD_CDR_REDUCTION);
+          }
+          return 12 / (1 + haste);
+        },
         charges: 2,
         gcd: {
           base: 1500,

@@ -1,6 +1,5 @@
 import {
   STEADY_FOCUS_HASTE_PERCENT,
-  TACTICAL_RELOAD_CDR_REDUCTION,
   TRUESHOT_AIMED_SHOT_RECHARGE_INCREASE,
 } from 'analysis/retail/hunter/marksmanship/constants';
 import SPELLS from 'common/SPELLS';
@@ -89,14 +88,10 @@ class AimedShot extends Analyzer {
      */
     let modRate = 1;
 
-    // Sum the total cdr reduction from Trueshot, Tactial Reload, Steady Focus
+    // Sum the total cdr reduction from Trueshot, and Steady Focus
     let reduction = 0;
     if (this.selectedCombatant.hasBuff(SPELLS.TRUESHOT.id)) {
       reduction += TRUESHOT_AIMED_SHOT_RECHARGE_INCREASE;
-    }
-
-    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.TACTICAL_RELOAD_TALENT)) {
-      reduction += TACTICAL_RELOAD_CDR_REDUCTION;
     }
 
     if (this.selectedCombatant.hasBuff(SPELLS.STEADY_FOCUS_BUFF.id)) {
