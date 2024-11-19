@@ -24,7 +24,7 @@ class Abilities extends CoreAbilities {
         category: SPELL_CATEGORY.ROTATIONAL,
         cooldown: (haste: number) => {
           if (this.selectedCombatant.hasTalent(TALENTS.TACTICAL_RELOAD_TALENT)) {
-            return 12 / (1 + haste + TACTICAL_RELOAD_CDR_REDUCTION);
+            return (12 * (1 - TACTICAL_RELOAD_CDR_REDUCTION)) / (1 + haste);
           }
           return 12 / (1 + haste);
         },
