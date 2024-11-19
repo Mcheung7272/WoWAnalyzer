@@ -8,7 +8,7 @@ import TALENTS from 'common/TALENTS/hunter';
 import { SpellLink } from 'interface';
 import Analyzer, { Options, SELECTED_PLAYER } from 'parser/core/Analyzer';
 import { calculateEffectiveDamage } from 'parser/core/EventCalculateLib';
-import Events, { CastEvent, DamageEvent } from 'parser/core/Events';
+import Events, { DamageEvent } from 'parser/core/Events';
 import { plotOneVariableBinomChart } from 'parser/shared/modules/helpers/Probability';
 import BoringSpellValueText from 'parser/ui/BoringSpellValueText';
 import ItemDamageDone from 'parser/ui/ItemDamageDone';
@@ -49,14 +49,8 @@ class SurgingShots extends Analyzer {
     this.damage += calculateEffectiveDamage(event, SURGING_SHOTS_DAMAGE_INCREASE);
   }
 
-  onAimedShotCast(event: CastEvent) {
+  onAimedShotCast() {
     this.aimedShotCasts += 1;
-    if (
-      this.spellUsable.isOnCooldown(SPELLS.RAPID_FIRE.id) &&
-      this.spellUsable.chargesAvailable(SPELLS.RAPID_FIRE.id) === 0
-    ) {
-      this.spellUsable.endCooldown(SPELLS.RAPID_FIRE.id, event.timestamp);
-    }
   }
 
   statistic() {
