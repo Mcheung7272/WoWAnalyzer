@@ -576,6 +576,11 @@ const spells = {
     name: 'Reincarnation',
     icon: 'spell_shaman_improvedreincarnation',
   },
+  STORMSTRIKE: {
+    id: 17364,
+    name: 'Stormstrike',
+    icon: 'ability_shaman_stormstrike',
+  },
   WINDLASH: {
     id: 114089,
     name: 'Windlash',
