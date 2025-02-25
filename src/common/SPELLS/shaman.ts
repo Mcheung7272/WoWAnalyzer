@@ -6,6 +6,12 @@
 import Spell from 'common/SPELLS/Spell';
 
 const spells = {
+  HEALING_WAVE: {
+    id: 77472,
+    name: 'Healing Wave',
+    icon: 'spell_nature_healingwavelesser',
+    manaCost: 75000,
+  },
   WATER_SHIELD: {
     id: 52127,
     name: 'Water Shield',
@@ -852,11 +858,6 @@ const spells = {
     id: 383235,
     name: 'Undercurrent',
     icon: 'spell_fire_bluehellfire',
-  },
-  ANCESTRAL_GUIDANCE_HEAL: {
-    id: 114911,
-    name: 'Ancestral Guidance',
-    icon: 'ability_shaman_ancestralguidance',
   },
   ANCESTRAL_AWAKENING_HEAL: {
     id: 382311,
