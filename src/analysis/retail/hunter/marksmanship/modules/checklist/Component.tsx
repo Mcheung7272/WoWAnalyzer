@@ -46,11 +46,7 @@ const MarksmanshipChecklist = (props: ChecklistProps) => {
         <AbilityRequirement spell={SPELLS.RAPID_FIRE.id} />
         <AbilityRequirement spell={SPELLS.TRUESHOT.id} />
         <TalentCastEfficiencyRequirement talent={TALENTS_HUNTER.KILL_SHOT_SHARED_TALENT} />
-
         <TalentCastEfficiencyRequirement talent={TALENTS_HUNTER.EXPLOSIVE_SHOT_TALENT} />
-
-        <TalentCastEfficiencyRequirement talent={TALENTS_HUNTER.BARRAGE_TALENT} />
-
         <TalentCastEfficiencyRequirement talent={TALENTS_HUNTER.VOLLEY_TALENT} />
       </Rule>
 
@@ -77,17 +73,6 @@ const MarksmanshipChecklist = (props: ChecklistProps) => {
             thresholds={thresholds.callingTheShotsThresholds}
           />
         )}
-
-        {combatant.hasTalent(TALENTS_HUNTER.STEADY_FOCUS_TALENT) && (
-          <Requirement
-            name={
-              <>
-                <SpellLink spell={TALENTS_HUNTER.STEADY_FOCUS_TALENT} /> buff uptime
-              </>
-            }
-            thresholds={thresholds.steadyFocusThresholds}
-          />
-        )}
       </Rule>
 
       <Rule
@@ -101,7 +86,6 @@ const MarksmanshipChecklist = (props: ChecklistProps) => {
         }
       >
         <Requirement name="Active time" thresholds={thresholds.downtimeSuggestionThresholds} />
-
         <Requirement name="Successful casts" thresholds={thresholds.cancelledCastsThresholds} />
       </Rule>
 
@@ -111,12 +95,7 @@ const MarksmanshipChecklist = (props: ChecklistProps) => {
           <>
             Capping on Focus is a loss of potential DPS, as you could've used that Focus for a
             damaging ability at a later point. If everything is on cooldown, try and use{' '}
-            {combatant.hasTalent(TALENTS_HUNTER.CHIMAERA_SHOT_TALENT) ? (
-              <SpellLink spell={TALENTS_HUNTER.CHIMAERA_SHOT_TALENT} />
-            ) : (
-              <SpellLink spell={SPELLS.ARCANE_SHOT} />
-            )}{' '}
-            to stay off the focus cap and do some damage.
+            <SpellLink spell={SPELLS.ARCANE_SHOT} /> to stay off the focus cap and do some damage.
           </>
         }
       >
