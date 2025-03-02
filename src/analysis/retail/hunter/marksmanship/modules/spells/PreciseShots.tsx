@@ -31,7 +31,7 @@ class PreciseShots extends Analyzer {
 
   constructor(options: Options) {
     super(options);
-    this.active = this.selectedCombatant.hasTalent(TALENTS_HUNTER.PRECISE_SHOT_TALENT);
+    this.active = this.selectedCombatant.hasTalent(TALENTS_HUNTER.PRECISE_SHOTS_TALENT);
     this.addEventListener(
       Events.applybuff.by(SELECTED_PLAYER).spell(SPELLS.PRECISE_SHOTS),
       this.onPreciseShotsApplication,
@@ -49,22 +49,22 @@ class PreciseShots extends Analyzer {
       this.onPreciseShotsStackApplication,
     );
     this.addEventListener(
-      Events.cast
-        .by(SELECTED_PLAYER)
-        .spell([
-          SPELLS.ARCANE_SHOT,
-          TALENTS_HUNTER.MULTI_SHOT_MARKSMANSHIP_TALENT,
-          TALENTS_HUNTER.CHIMAERA_SHOT_TALENT,
-        ]),
+      Events.cast.by(SELECTED_PLAYER).spell([SPELLS.ARCANE_SHOT, SPELLS.MULTISHOT_MM]),
       this.onPreciseCast,
     );
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.HEADSHOT_TALENT)) {
+      this.addEventListener(
+        Events.cast.by(SELECTED_PLAYER).spell(SPELLS.KILL_SHOT_MM_BM),
+        this.onPreciseCast,
+      );
+    }
     this.addEventListener(Events.damage.by(SELECTED_PLAYER), this.checkForBuff);
     this.addEventListener(
       Events.damage
         .by(SELECTED_PLAYER)
         .spell([
           SPELLS.ARCANE_SHOT,
-          TALENTS_HUNTER.MULTI_SHOT_MARKSMANSHIP_TALENT,
+          SPELLS.MULTISHOT_MM,
           SPELLS.CHIMAERA_SHOT_MM_FROST_DAMAGE,
           SPELLS.CHIMAERA_SHOT_MM_NATURE_DAMAGE,
         ]),
