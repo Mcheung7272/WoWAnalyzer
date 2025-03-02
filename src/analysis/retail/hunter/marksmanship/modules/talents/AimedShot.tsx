@@ -9,6 +9,7 @@ import Events, {
   EventType,
   RefreshBuffEvent,
   RemoveBuffEvent,
+  RemoveDebuffEvent,
 } from 'parser/core/Events';
 import Abilities from 'parser/core/modules/Abilities';
 import SpellUsable from 'parser/shared/modules/SpellUsable';
@@ -60,13 +61,33 @@ class AimedShot extends Analyzer {
       Events.removebuff.to(SELECTED_PLAYER).spell([SPELLS.TRUESHOT]),
       this.onAffectingBuffChange,
     );
+
+    // Track Steady Shot for cooldown reduction (Pin Cushion functionality is now baseline)
+    this.addEventListener(
+      Events.cast.by(SELECTED_PLAYER).spell(SPELLS.STEADY_SHOT),
+      this.onSteadyShot,
+    );
+
+    // Track Spotter's Mark consumption for Target Acquisition
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.TARGET_ACQUISITION_TALENT)) {
+      this.addEventListener(
+        Events.removedebuff.by(SELECTED_PLAYER).spell(SPELLS.SPOTTERS_MARK),
+        this.onSpottersMarkConsumed,
+      );
+    }
+
+    // Track Precise Shots consumption for Focused Aim
+    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.FOCUSED_AIM_TALENT)) {
+      this.addEventListener(
+        Events.cast.by(SELECTED_PLAYER).spell([SPELLS.ARCANE_SHOT, SPELLS.MULTISHOT_MM]),
+        this.onPreciseShotsConsumer,
+      );
+    }
   }
 
   //Pin Cushion reduces the cooldown of Aimed Shot by 2 seconds
   onSteadyShot(event: CastEvent) {
-    if (this.selectedCombatant.hasTalent(TALENTS_HUNTER.PIN_CUSHION_TALENT)) {
-      this.spellUsable.reduceCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, 2000);
-    }
+    this.spellUsable.reduceCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, 2000);
   }
 
   onEvent(event: AnyEvent) {
@@ -132,6 +153,21 @@ class AimedShot extends Analyzer {
 
     if (hasPreciseShotsBuff && !hasTrueshotBuff) {
       addInefficientCastReason(event, 'Aimed Shot while having Precise Shots stacks left.');
+    }
+  }
+
+  onSpottersMarkConsumed(event: RemoveDebuffEvent) {
+    if (this.spellUsable.isOnCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id)) {
+      this.spellUsable.reduceCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, 2000);
+    }
+  }
+
+  onPreciseShotsConsumer(event: CastEvent) {
+    if (
+      this.selectedCombatant.hasBuff(SPELLS.PRECISE_SHOTS.id) &&
+      this.spellUsable.isOnCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id)
+    ) {
+      this.spellUsable.reduceCooldown(TALENTS_HUNTER.AIMED_SHOT_TALENT.id, 750);
     }
   }
 }
