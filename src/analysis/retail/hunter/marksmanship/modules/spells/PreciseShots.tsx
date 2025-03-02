@@ -54,14 +54,7 @@ class PreciseShots extends Analyzer {
     );
     this.addEventListener(Events.damage.by(SELECTED_PLAYER), this.checkForBuff);
     this.addEventListener(
-      Events.damage
-        .by(SELECTED_PLAYER)
-        .spell([
-          SPELLS.ARCANE_SHOT,
-          SPELLS.MULTISHOT_MM,
-          SPELLS.CHIMAERA_SHOT_MM_FROST_DAMAGE,
-          SPELLS.CHIMAERA_SHOT_MM_NATURE_DAMAGE,
-        ]),
+      Events.damage.by(SELECTED_PLAYER).spell([SPELLS.ARCANE_SHOT, SPELLS.MULTISHOT_MM]),
       this.onPreciseDamage,
     );
   }
