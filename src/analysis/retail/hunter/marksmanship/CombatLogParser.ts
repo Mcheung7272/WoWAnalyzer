@@ -1,5 +1,4 @@
 import {
-  Barrage,
   BindingShot,
   BornToBeWild,
   CancelledCasts,
@@ -13,8 +12,6 @@ import {
   SpellFocusCost,
   Trailblazer,
   TranquilizingShot,
-  WailingArrow,
-  WailingArrowPrepullNormalizer,
 } from '../shared';
 import CoreCombatLogParser from 'parser/core/CombatLogParser';
 import ArcaneTorrent from 'parser/shared/modules/racials/bloodelf/ArcaneTorrent';
@@ -26,7 +23,6 @@ import GlobalCooldown from './modules/core/GlobalCooldown';
 import SpellUsable from './modules/core/SpellUsable';
 import AlwaysBeCasting from './modules/features/AlwaysBeCasting';
 import CooldownThroughputTracker from './modules/features/CooldownThroughputTracker';
-import SerpentstalkersTrickery from './modules/talents/SerpentstalkersTrickery';
 import SurgingShots from './modules/talents/SurgingShots';
 import Focus from './modules/resources/Focus';
 import MarksmanshipFocusCapTracker from './modules/resources/MarksmanshipFocusCapTracker';
@@ -38,13 +34,9 @@ import RapidFire from './modules/spells/RapidFire';
 import SteadyShot from './modules/spells/SteadyShot';
 import Trueshot from './modules/spells/Trueshot';
 import CallingTheShots from './modules/talents/CallingTheShots';
-import CarefulAim from './modules/talents/CarefulAim';
-import ChimaeraShot from './modules/talents/ChimaeraShot';
 import ExplosiveShot from '../shared/talents/ExplosiveShot';
 import LockAndLoad from './modules/talents/LockAndLoad';
 import MasterMarksman from '../shared/talents/MasterMarksman';
-import SteadyFocus from './modules/talents/SteadyFocus';
-import Streamline from './modules/talents/Streamline';
 import Volley from './modules/talents/Volley';
 import AimedShotPrepullNormalizer from './normalizers/AimedShotPrepullNormalizer';
 import Deathblow from '../shared/talents/Deathblow';
@@ -55,6 +47,7 @@ import OvinaxMercurialEgg from 'parser/retail/modules/items/thewarwithin/trinket
 import MadQueensMandate from 'parser/retail/modules/items/thewarwithin/trinkets/MadQueensMandate';
 import SkardynsGrace from 'parser/retail/modules/items/thewarwithin/trinkets/SkardynsGrace';
 import BlackArrow from '../shared/talents/BlackArrow';
+import Streamline from './modules/talents/Streamline';
 
 class CombatLogParser extends CoreCombatLogParser {
   static guide = FoundationGuide;
@@ -83,7 +76,6 @@ class CombatLogParser extends CoreCombatLogParser {
 
     //Normalizers
     aimedShotPrepullNormalizer: AimedShotPrepullNormalizer,
-    wailingArrowPrepullNormalizer: WailingArrowPrepullNormalizer,
 
     //DeathTracker
     deathTracker: DeathTracker,
@@ -102,13 +94,9 @@ class CombatLogParser extends CoreCombatLogParser {
     volley: Volley,
     lockAndLoad: LockAndLoad,
     callingTheShots: CallingTheShots,
-    steadyFocus: SteadyFocus,
-    carefulAim: CarefulAim,
-    chimaeraShot: ChimaeraShot,
-    streamline: Streamline,
     deathblow: Deathblow,
     surgingShots: SurgingShots,
-    serpentstalkersTrickery: SerpentstalkersTrickery,
+    streamline: Streamline,
 
     //Shared Talents
     rejuvenatingWind: RejuvenatingWind,
@@ -118,8 +106,6 @@ class CombatLogParser extends CoreCombatLogParser {
     bornToBeWild: BornToBeWild,
     explosiveShot: ExplosiveShot,
     masterMarksman: MasterMarksman,
-    wailingArrow: WailingArrow,
-    barrage: Barrage,
     blackArrow: BlackArrow,
 
     // items
