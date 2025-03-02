@@ -101,19 +101,6 @@ class Abilities extends CoreAbilities {
         },
       },
       {
-        spell: TALENTS.BARRAGE_TALENT.id,
-        category: SPELL_CATEGORY.ROTATIONAL,
-        cooldown: 20,
-        enabled: combatant.hasTalent(TALENTS.BARRAGE_TALENT),
-        gcd: {
-          base: 1500,
-        },
-        castEfficiency: {
-          suggestion: true,
-          recommendedEfficiency: 0.9,
-        },
-      },
-      {
         spell: TALENTS.VOLLEY_TALENT.id,
         category: SPELL_CATEGORY.ROTATIONAL,
         cooldown: 45,
@@ -143,6 +130,22 @@ class Abilities extends CoreAbilities {
           base: 1500,
         },
       },
+      {
+        spell: SPELLS.HARRIERS_CRY.id,
+        category: SPELL_CATEGORY.COOLDOWNS,
+        cooldown: 300,
+        gcd: {
+          base: 1500,
+        },
+      },
+      {
+        spell: SPELLS.EYES_IN_THE_SKY.id,
+        category: SPELL_CATEGORY.ROTATIONAL,
+      },
+      {
+        spell: SPELLS.IMPROVED_SPOTTERS_MARK.id,
+        category: SPELL_CATEGORY.ROTATIONAL,
+      },
       //endregion
 
       //region Baseline Defensives
@@ -169,7 +172,7 @@ class Abilities extends CoreAbilities {
         },
       },
       {
-        spell: [SPELLS.SURVIVAL_OF_THE_FITTEST_LONE_WOLF.id, SPELLS.SURVIVAL_OF_THE_FITTEST.id],
+        spell: [SPELLS.SURVIVAL_OF_THE_FITTEST.id],
         category: SPELL_CATEGORY.DEFENSIVE,
         isDefensive: true,
         cooldown: 180,
