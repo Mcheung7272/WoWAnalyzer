@@ -4,7 +4,6 @@ import TALENTS from 'common/TALENTS/hunter';
 import CoreAbilities from 'parser/core/modules/Abilities';
 import { SpellbookAbility } from 'parser/core/modules/Ability';
 import SPELL_CATEGORY from 'parser/core/SPELL_CATEGORY';
-import { TACTICAL_RELOAD_CDR_REDUCTION } from '../constants';
 
 class Abilities extends CoreAbilities {
   spellbook(): SpellbookAbility[] {
@@ -22,12 +21,7 @@ class Abilities extends CoreAbilities {
         spell: TALENTS.AIMED_SHOT_TALENT.id,
         enabled: this.selectedCombatant.hasTalent(TALENTS.AIMED_SHOT_TALENT),
         category: SPELL_CATEGORY.ROTATIONAL,
-        cooldown: (haste: number) => {
-          if (this.selectedCombatant.hasTalent(TALENTS.TACTICAL_RELOAD_TALENT)) {
-            return (12 * (1 - TACTICAL_RELOAD_CDR_REDUCTION)) / (1 + haste);
-          }
-          return 12 / (1 + haste);
-        },
+        cooldown: 12,
         charges: 2,
         gcd: {
           base: 1500,
@@ -53,15 +47,12 @@ class Abilities extends CoreAbilities {
         spell: SPELLS.ARCANE_SHOT.id,
         buffSpellId: SPELLS.PRECISE_SHOTS.id,
         category: SPELL_CATEGORY.ROTATIONAL,
-
-        enabled: !combatant.hasTalent(TALENTS.CHIMAERA_SHOT_TALENT),
         gcd: {
           base: 1500,
         },
       },
       {
         spell: SPELLS.STEADY_SHOT.id,
-        buffSpellId: SPELLS.STEADY_FOCUS_BUFF.id,
         category: SPELL_CATEGORY.ROTATIONAL,
         gcd: {
           base: 1500,
@@ -88,32 +79,9 @@ class Abilities extends CoreAbilities {
           recommendedEfficiency: 0.95,
         },
       },
-      {
-        spell: SPELLS.WAILING_ARROW_DAMAGE.id,
-        enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
-        category: SPELL_CATEGORY.ROTATIONAL,
-      },
-      {
-        spell: SPELLS.WAILING_ARROW_DAMAGE_FOCUS.id,
-        enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
-        category: SPELL_CATEGORY.ROTATIONAL,
-      },
       //endregion
 
       //region Talents
-      {
-        spell: TALENTS.WAILING_ARROW_TALENT.id,
-        enabled: combatant.hasTalent(TALENTS.WAILING_ARROW_TALENT),
-        category: SPELL_CATEGORY.ROTATIONAL,
-      },
-      {
-        spell: TALENTS.CHIMAERA_SHOT_TALENT.id,
-        category: SPELL_CATEGORY.ROTATIONAL,
-        enabled: combatant.hasTalent(TALENTS.CHIMAERA_SHOT_TALENT),
-        gcd: {
-          base: 1500,
-        },
-      },
       {
         spell: TALENTS.EXPLOSIVE_SHOT_TALENT.id,
         category: SPELL_CATEGORY.ROTATIONAL,
@@ -126,27 +94,6 @@ class Abilities extends CoreAbilities {
         castEfficiency: {
           suggestion: true,
           recommendedEfficiency: 0.95,
-        },
-      },
-      {
-        spell: SPELLS.SERPENT_STING_MM.id,
-        category: SPELL_CATEGORY.ROTATIONAL,
-        enabled: combatant.hasTalent(TALENTS.SERPENTSTALKERS_TRICKERY_TALENT),
-        gcd: {
-          base: 1500,
-        },
-      },
-      {
-        spell: TALENTS.BARRAGE_TALENT.id,
-        category: SPELL_CATEGORY.ROTATIONAL,
-        cooldown: 20,
-        enabled: combatant.hasTalent(TALENTS.BARRAGE_TALENT),
-        gcd: {
-          base: 1500,
-        },
-        castEfficiency: {
-          suggestion: true,
-          recommendedEfficiency: 0.9,
         },
       },
       {
@@ -179,6 +126,22 @@ class Abilities extends CoreAbilities {
           base: 1500,
         },
       },
+      {
+        spell: SPELLS.HARRIERS_CRY.id,
+        category: SPELL_CATEGORY.COOLDOWNS,
+        cooldown: 300,
+        gcd: {
+          base: 1500,
+        },
+      },
+      {
+        spell: SPELLS.EYES_IN_THE_SKY.id,
+        category: SPELL_CATEGORY.ROTATIONAL,
+      },
+      {
+        spell: SPELLS.IMPROVED_SPOTTERS_MARK.id,
+        category: SPELL_CATEGORY.ROTATIONAL,
+      },
       //endregion
 
       //region Baseline Defensives
@@ -205,7 +168,7 @@ class Abilities extends CoreAbilities {
         },
       },
       {
-        spell: [SPELLS.SURVIVAL_OF_THE_FITTEST_LONE_WOLF.id, SPELLS.SURVIVAL_OF_THE_FITTEST.id],
+        spell: SPELLS.SURVIVAL_OF_THE_FITTEST.id,
         category: SPELL_CATEGORY.DEFENSIVE,
         isDefensive: true,
         cooldown: 180,
@@ -311,55 +274,9 @@ class Abilities extends CoreAbilities {
 
       //region Pets
       {
-        spell: [SPELLS.PRIMAL_RAGE_1.id, SPELLS.PRIMAL_RAGE_2.id],
-        buffSpellId: [SPELLS.PRIMAL_RAGE_1.id, SPELLS.PRIMAL_RAGE_2.id],
-        category: SPELL_CATEGORY.UTILITY,
-        cooldown: 360,
-        gcd: {
-          static: 0,
-        },
-      },
-      {
-        spell: SPELLS.MASTERS_CALL.id,
-        category: SPELL_CATEGORY.UTILITY,
-        cooldown: 45,
-        gcd: {
-          static: 0,
-        },
-      },
-
-      {
         spell: SPELLS.INTIMIDATION.id,
         category: SPELL_CATEGORY.UTILITY,
         cooldown: 60,
-        gcd: {
-          base: 1500,
-        },
-      },
-      {
-        spell: [
-          SPELLS.CALL_PET_1.id,
-          SPELLS.CALL_PET_2.id,
-          SPELLS.CALL_PET_3.id,
-          SPELLS.CALL_PET_4.id,
-          SPELLS.CALL_PET_5.id,
-        ],
-        category: SPELL_CATEGORY.UTILITY,
-        gcd: {
-          base: 1500,
-        },
-      },
-      {
-        spell: SPELLS.DISMISS_PET.id,
-        category: SPELL_CATEGORY.UTILITY,
-        gcd: {
-          base: 1500,
-        },
-      },
-      {
-        spell: SPELLS.MEND_PET.id,
-        category: SPELL_CATEGORY.UTILITY,
-        cooldown: 10,
         gcd: {
           base: 1500,
         },
