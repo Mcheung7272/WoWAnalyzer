@@ -225,9 +225,15 @@ const spells = {
     name: 'Serpent Sting',
     icon: 'spell_hunter_exoticmunitions_poisoned',
   },
+
+  SPOTTERS_MARK: {
+    id: 466872,
+    name: "Spotter's Mark",
+    icon: 'inv_111_hunter_ability_eaglemark',
+  },
   IMPROVED_SPOTTERS_MARK: {
     id: 466867,
-    name: "Spotter's Mark",
+    name: "Improved Spotter's Mark",
     icon: 'inv_111_hunter_ability_eaglemark',
   },
 
