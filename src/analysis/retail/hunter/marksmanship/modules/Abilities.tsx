@@ -49,14 +49,12 @@ class Abilities extends CoreAbilities {
         spell: SPELLS.ARCANE_SHOT.id,
         buffSpellId: SPELLS.PRECISE_SHOTS.id,
         category: SPELL_CATEGORY.ROTATIONAL,
-
         gcd: {
           base: 1500,
         },
       },
       {
         spell: SPELLS.STEADY_SHOT.id,
-        buffSpellId: SPELLS.STEADY_FOCUS_BUFF.id,
         category: SPELL_CATEGORY.ROTATIONAL,
         gcd: {
           base: 1500,
@@ -98,19 +96,6 @@ class Abilities extends CoreAbilities {
         castEfficiency: {
           suggestion: true,
           recommendedEfficiency: 0.95,
-        },
-      },
-      {
-        spell: TALENTS.BARRAGE_TALENT.id,
-        category: SPELL_CATEGORY.ROTATIONAL,
-        cooldown: 20,
-        enabled: combatant.hasTalent(TALENTS.BARRAGE_TALENT),
-        gcd: {
-          base: 1500,
-        },
-        castEfficiency: {
-          suggestion: true,
-          recommendedEfficiency: 0.9,
         },
       },
       {
@@ -169,7 +154,7 @@ class Abilities extends CoreAbilities {
         },
       },
       {
-        spell: [SPELLS.SURVIVAL_OF_THE_FITTEST_LONE_WOLF.id, SPELLS.SURVIVAL_OF_THE_FITTEST.id],
+        spell: SPELLS.SURVIVAL_OF_THE_FITTEST.id,
         category: SPELL_CATEGORY.DEFENSIVE,
         isDefensive: true,
         cooldown: 180,
